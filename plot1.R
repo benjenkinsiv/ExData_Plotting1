@@ -20,7 +20,7 @@ unzipped$newDate <- as.character(as.Date(as.character(unzipped$Date), format = "
 # create dataframe with date constraint
 x<-sqldf("select Global_active_power FROM unzipped WHERE newDate BETWEEN '2007-02-01' and '2007-02-02' and Global_active_power <> '?'")
 # create histogram
-with(x,hist(as.numeric(Global_active_power)/500, col="red", main='Global Active Power',xlab="Global Active Power (kilowatts)", breaks=11))
+with(x,hist(as.numeric(levels(x$Global_active_power))[x$Global_active_power], col="red", main='Global Active Power',xlab="Global Active Power (kilowatts)", breaks=11))
 dev.copy(png, file = "plot1.png")
 dev.off()
 }
