@@ -22,7 +22,7 @@ x<-sqldf("select Global_active_power, newDate, time FROM unzipped WHERE newDate 
 # add column converting newDate and Time 
 x$datetime <- strptime(paste(x$newDate, x$Time),"%Y-%m-%d %H:%M:%S")
 # create plot
-with(x,plot( x$datetime, as.numeric( x$Global_active_power)/500,type="l",main='',xlab="",ylab="Global Active Power (kilowatts)" ))
+with(x,plot( x$datetime, as.numeric(levels(x$Global_active_power))[x$Global_active_power],type="l",main='',xlab="",ylab="Global Active Power (kilowatts)" ))
 dev.copy(png, file = "plot2.png")
 dev.off()
 }
